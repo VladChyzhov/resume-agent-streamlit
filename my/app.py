@@ -6,10 +6,11 @@
 # вызовы FastAPI‑эндпойнтов.
 # -------------------------------------------------------------
 
+import os
 import streamlit as st
 import requests
 
-BACKEND_URL = "http://localhost:8000"  # пока не используется
+BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000")  # пока не используется
 
 # ----------------------------------------
 # Вспомогательная функция (заготовка)
