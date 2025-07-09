@@ -9,6 +9,8 @@
 import streamlit as st
 import requests
 
+from .db import load_personal_info, save_personal_info
+
 BACKEND_URL = "http://localhost:8000"  # пока не используется
 
 # ----------------------------------------
@@ -53,15 +55,22 @@ page = st.sidebar.radio(
 if page == "Персональные данные":
     st.title("👤 Персональные данные")
 
-    name = st.text_input("Имя и фамилия", st.session_state.data.get("name", ""))
-    email = st.text_input("Email", st.session_state.data.get("email", ""))
-    phone = st.text_input("Телефон", st.session_state.data.get("phone", ""))
+    stored = load_personal_info() or {}
+
+    name = st.text_input("Имя и фамилия", stored.get("name", ""))
+    email = st.text_input("Email", stored.get("email", ""))
+    phone = st.text_input("Телефон", stored.get("phone", ""))
     photo = st.file_uploader("Фото (JPG/PNG)", type=["jpg", "jpeg", "png"])
 
+    if stored.get("photo") and not photo:
+        st.image(stored["photo"], caption="Сохранённое фото", use_column_width=True)
+
     if st.button("Сохранить"):
+        photo_bytes = photo.read() if photo else stored.get("photo")
+        save_personal_info(name, email, phone, photo_bytes)
         st.session_state.data.update({"name": name, "email": email, "phone": phone})
-        if photo:
-            st.session_state.data["photo"] = photo
+        if photo_bytes:
+            st.session_state.data["photo"] = photo_bytes
         st.success("Сохранено! Перейдите к вкладке 'Образование'.")
 
 # ----------------------------------------
