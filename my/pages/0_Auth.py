@@ -1,6 +1,21 @@
 import streamlit as st
 import db
 
+st.set_page_config(initial_sidebar_state="collapsed")
+
+if "show_registration" not in st.session_state:
+    st.session_state.show_registration = False
+
+if st.session_state.get("user_id") is None:
+    st.markdown(
+        """
+        <style>
+            [data-testid="stSidebar"] {display: none;}
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
 # show login and registration pages
 
 def show_login():

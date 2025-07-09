@@ -27,7 +27,9 @@ Both files are reused on subsequent launches.
 
 ## Multi-page layout
 
-The interface is organised as a series of numbered pages:
+The interface is organised as a series of numbered pages. When the app first
+opens only the login/registration view is shown and the sidebar navigation is
+hidden until a user successfully signs in:
 
 1. **0_Auth** – login and registration.
 2. **1_Personal_Info** – collect name, email, phone and an optional photo.
