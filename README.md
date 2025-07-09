@@ -4,7 +4,9 @@ This repository contains a minimal Streamlit application for assembling resume d
 
 ## Running
 
-Install dependencies and start the app:
+Install dependencies and start the app. The `my/requirements.txt` file
+contains only the small set of packages used by the demo (primarily
+`streamlit` and `requests`):
 
 ```bash
 pip install -r my/requirements.txt
