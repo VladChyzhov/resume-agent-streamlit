@@ -34,10 +34,10 @@ hidden until a user successfully signs in:
 1. **0_Auth** – login and registration.
 2. **1_Personal_Info** – collect name, email, phone and an optional photo.
 3. **2_Education** – upload diplomas and certificates.
-4. **3_Work_Experience** – upload documents describing prior work.
-5. **4_Skills_Languages** – placeholder for skills and language inputs.
-6. **5_Generate_Resume** – shows the gathered data and will later export a
-   PDF.
+4. **3_Work_Experience** – collect job history details and attach supporting files.
+5. **4_Skills_Languages** – capture skills and languages with interactive inputs.
+6. **5_Generate_Resume** – preview gathered data and export a ready-to-send
+   PDF résumé.
 
 Start the application from the repository root with:
 

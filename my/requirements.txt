@@ -1,2 +1,5 @@
 streamlit
 requests
+
+# For PDF generation
+fpdf2>=2.7

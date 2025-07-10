@@ -1,6 +1,10 @@
 import streamlit as st
 import db
 
+# Ensure shared data dict exists
+if "data" not in st.session_state:
+    st.session_state.data = {}
+
 if st.session_state.get("user_id") is None:
     st.switch_page("pages/0_Auth.py")
 
@@ -27,3 +31,9 @@ if st.button("Сохранить"):
     db.save_personal_info(st.session_state.user_id, name, email, phone, photo_bytes)
     st.session_state.data.update({"name": name, "email": email, "phone": phone})
     st.success("Сохранено! Перейдите к вкладке 'Образование'.")
+
+# --- Navigation ---
+col1, col2 = st.columns([1,1])
+with col2:
+    if st.button("Далее ➡️"):
+        st.switch_page("pages/2_Education.py")
