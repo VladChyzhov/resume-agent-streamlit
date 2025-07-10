@@ -26,12 +26,12 @@ def show_login():
         user_id = db.authenticate_user(username, password)
         if user_id:
             st.session_state.user_id = user_id
-            st.experimental_rerun()
+            st.rerun()
         else:
             st.error("Неверные учётные данные")
     if st.button("Регистрация"):
         st.session_state.show_registration = True
-        st.experimental_rerun()
+        st.rerun()
 
 def show_registration():
     st.title("Регистрация")
@@ -42,12 +42,12 @@ def show_registration():
             user_id = db.register_user(username, password)
             st.success("Аккаунт создан. Войдите.")
             st.session_state.show_registration = False
-            st.experimental_rerun()
+            st.rerun()
         except ValueError as e:
             st.error(str(e))
     if st.button("Назад"):
         st.session_state.show_registration = False
-        st.experimental_rerun()
+        st.rerun()
 
 if st.session_state.get("user_id"):
     st.switch_page("pages/1_Personal_Info.py")
