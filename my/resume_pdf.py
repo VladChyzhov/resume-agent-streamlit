@@ -49,6 +49,19 @@ def generate_resume(data: Dict) -> bytes:
 
     # Sections
     _add_section(pdf, "Навыки", data.get("skills", []))
+    # Education
+    edu_lines = [
+        f"{e['institution']} — {e['degree']} ({e['years']})" for e in data.get("education", [])
+    ]
+    _add_section(pdf, "Образование", edu_lines)
+
+    # Experience
+    exp_lines = [
+        f"{e['company']} — {e['position']} ({e['period']}) | {e['description']}".strip()
+        for e in data.get("experience", [])
+    ]
+    _add_section(pdf, "Опыт работы", exp_lines)
+
     _add_section(pdf, "Языки", data.get("languages", []))
 
     # Footer
